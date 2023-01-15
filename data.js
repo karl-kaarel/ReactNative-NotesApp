@@ -17,8 +17,9 @@ export const data = [
     { title: "My first Post title", description: "My first Post description", },
 ]
 export const colors = [
-    { color: "#FDA3B8", id: 1 },
-    { color: "#BBEEEE", id: 2 },
-    { color: "#88CCCC", id: 3 },
-    { color: "#427dde", id: 4 },
+    { color: "#fd99ff", id: 1 },
+    { color: "#91f48f", id: 2 },
+    { color: "#fff599", id: 3 },
+    { color: "#9effff", id: 4 },
+    { color: "#b69cff", id: 5 },
 ]
