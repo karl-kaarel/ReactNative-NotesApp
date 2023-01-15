@@ -17,8 +17,9 @@ const styles = StyleSheet.create({
     note: {
         backgroundColor: "#FDA3B8",
         margin: 5,
+        marginBottom: 10,
         paddingHorizontal: 50,
-        paddingVertical: 10,
+        paddingVertical: 15,
         elevation: 6,
         borderRadius: 5,
         flex: 1,
