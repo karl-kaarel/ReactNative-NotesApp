@@ -5,7 +5,7 @@ const Note = ({ note, navigation }) => {
     return (
         <TouchableOpacity style={{ ...styles.note, backgroundColor: note.color }} onPress={() => navigation.navigate("DetailNote", note)} >
             <View style={{ flex: 1 }} >
-                <Text style={{ color: "#fff", fontSize: 22, fontFamily: "Semibold", fontWeight: "bold" }}>{note.title}</Text>
+                <Text style={{ color: "gray", fontSize: 22, fontFamily: "Semibold", fontWeight: "bold" }}>{note.title}</Text>
             </View>
         </TouchableOpacity>
     )

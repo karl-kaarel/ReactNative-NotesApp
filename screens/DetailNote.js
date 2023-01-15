@@ -16,6 +16,7 @@ const DetailNote = ({ route, navigation }) => {
     const [color, setColor] = useState(note.color)
 
     const deleteNoteHandler = async () => {
+        console.log("deleted")
         const noteResult = await deleteNote(note.id)
         if (noteResult.rowsAffected > 0) {
             Toast.show({
@@ -25,7 +26,7 @@ const DetailNote = ({ route, navigation }) => {
             setTimeout(() => {
 
                 navigation.goBack()
-            }, 2000);
+            }, 1500);
         }
     }
     const updateNoteHandler = async () => {
@@ -37,7 +38,7 @@ const DetailNote = ({ route, navigation }) => {
         })
         setTimeout(() => {
             navigation.goBack()
-        }, 2000);
+        }, 1500);
     }
 
     return (
@@ -61,16 +62,17 @@ const DetailNote = ({ route, navigation }) => {
             </View>
             <View style={{ marginTop: 20, }}>
                 <View  >
-                    <Text style={{ fontFamily: "Semibold", fontSize: 12 }}>Note Title</Text>
-                    <Text style={{ fontSize: 20, fontFamily: "Poppins" }}>{note.title}</Text>
+                    <Text style={{ fontFamily: "Semibold", fontSize: 12 ,color: isDark ? 'white':'black'}}>Note Title</Text>
+                    <TextInput placeholder='Update Your Note Title' defaultValue={note.title} multiline={true} onChangeText={(e) => setTitle(e)} style={{ fontSize: 20, fontFamily: "Poppins" ,color: isDark ? 'white':'black'}}/>
                 </View>
                 <View style={{ marginVertical: 20 }} >
-                    <Text style={{ fontFamily: "Semibold", fontSize: 12 }}>Note Description</Text>
-                    <Text style={{ fontSize: 16, fontFamily: "Poppins" }}>{note.description}</Text>
+                    <Text style={{ fontFamily: "Semibold", fontSize: 12,color: isDark ? 'white':'black' }}>Note Description</Text>
+                    <TextInput placeholder='Update Your Note Description' defaultValue={note.description} multiline={true} onChangeText={(e) => setDescription(e)} style={{ fontSize: 16, fontFamily: "Poppins" ,color: isDark ? 'white':'black'}}/>
                 </View>
                 <View  >
-                    <Text style={{ fontFamily: "Semibold", fontSize: 12 }}>Note Background Color</Text>
-                    <View style={{ ...styles.noteBackground, backgroundColor: note.color }} />
+                    <Text style={{ fontFamily: "Semibold", fontSize: 12,color: isDark ? 'white':'black' }}>Note Background Color</Text>
+                    <View style={{ ...styles.noteBackground, backgroundColor: color }} />
+                </View>
 
                 {/* Choose color */}
                 <View style={{ flexDirection: "row", alignContent: 'center', justifyContent: 'center'}}>
@@ -79,7 +81,7 @@ const DetailNote = ({ route, navigation }) => {
                             <View key={col.id} style={{ ...styles.colorBox, backgroundColor: col.color, borderWidth: index === selectedIndex ? 2 : 0 }} />
                         </TouchableOpacity>
                     )
-                    )}
+                )}
                 </View>
 
                 {/* Upload button */}

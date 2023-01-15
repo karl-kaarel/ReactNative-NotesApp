@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Pressable } from 'react-native'
+import { Text, View, TouchableOpacity, TextInput, Pressable } from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import HeaderBtn from "react-native-vector-icons/Ionicons"
 import Toast from 'react-native-toast-message';
@@ -41,7 +41,7 @@ const AddNote = ({ navigation }) => {
             })
             setTimeout(() => {
                 navigation.goBack()
-            }, 2000);
+            }, 1500);
         }
     }, [error, textValidated])
     return (
@@ -85,7 +85,7 @@ const AddNote = ({ navigation }) => {
                                 <View key={col.id} style={{ ...styles.colorBox, backgroundColor: col.color, borderWidth: index === selectedIndex ? 2 : 0 }} />
                             </TouchableOpacity>
                         )
-                        )}
+                    )}
                     </View>
 
                     {error.color && <Text style={styles.error}>{error.color}</Text>}
