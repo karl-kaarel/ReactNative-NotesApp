@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Pressable, TextInput, FlatList, useColorScheme,Switch } from 'react-native'
+import { Text, View, Pressable, TextInput, FlatList, useColorScheme,Switch } from 'react-native'
 import { useIsFocused } from "@react-navigation/native"
 import Icon from "react-native-vector-icons/Ionicons"
 import Note from '../components/Note'
 import { fetchNotes } from '../db/db'
 import App from '../App'
 import { isDarkMode } from '../App'
-
+import styles from '../styles'
 const Home = ({ navigation }) => {   
     
     const [notes, setNotes] = useState([])
@@ -14,6 +14,7 @@ const Home = ({ navigation }) => {
     const isFocused = useIsFocused();
     const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(text.toLowerCase()) || note.description.toLowerCase().includes(text.toLowerCase()))
     const [isDark, setIsDark] =useState(isDarkMode);
+    global.isDark=isDark;
     useEffect(async () => {
         const { rows } = await fetchNotes()
         setNotes(rows._array)
@@ -49,53 +50,4 @@ const Home = ({ navigation }) => {
 }
 
 export default Home
-const styles = StyleSheet.create({   
-    container: isDark => ({
-        flex: 1,
-        paddingTop: 60,
-        backgroundColor: isDark ? 'black':'white',
-        color: isDark ? 'white':'black',
-        paddingHorizontal: 20,
-    }),
-
-    iconContainer:isDark=> ({
-        paddingVertical: 5,
-        paddingHorizontal: 8,
-        borderRadius: 40,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 12,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 16.00,
-        elevation: 24,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: isDark ? 'white':'black',
-        overflow: "hidden",
-    }),
-    iconPosition: {
-        position: 'absolute',
-        alignItems: 'center',
-        justifyContent: 'center',
-        right: 7,
-        bottom: 120
-    },
-    inputContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginVertical: 20,
-        padding: 10,
-        borderRadius: 8,
-        elevation: 2,
-        backgroundColor: "#fff"
-    },
-    input: {
-        width: "90%",
-        fontSize: 14,
-        marginHorizontal: 6,
-        color: "grey"
-    },
-})
 

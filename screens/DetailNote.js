@@ -4,7 +4,6 @@ import Toast from "react-native-toast-message"
 import Icon from "react-native-vector-icons/Ionicons"
 import Delete from "react-native-vector-icons/AntDesign"
 import { deleteNote } from '../db/db'
-
 const DetailNote = ({ route, navigation }) => {
     const note = route.params
     const deleteNoteHandler = async () => {
@@ -21,7 +20,7 @@ const DetailNote = ({ route, navigation }) => {
         }
     }
     return (
-        <View style={styles.container}>
+        <View style={styles.container(!isDark)}>
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <Pressable onPress={() => navigation.navigate("Home")}>
                     <View style={styles.iconContainer}>
@@ -36,15 +35,15 @@ const DetailNote = ({ route, navigation }) => {
             </View>
             <View style={{ marginTop: 20, }}>
                 <View  >
-                    <Text style={{ fontFamily: "Semibold", fontSize: 12 }}>Note Title</Text>
-                    <Text style={{ fontSize: 20, fontFamily: "Poppins" }}>{note.title}</Text>
+                    <Text style={{ fontFamily: "Semibold", fontSize: 12,color: isDark ? 'white':'black' }}>Note Title</Text>
+                    <Text style={{ fontSize: 20, fontFamily: "Poppins", color: isDark ? 'white':'black' }}>{note.title}</Text>
                 </View>
                 <View style={{ marginVertical: 20 }} >
-                    <Text style={{ fontFamily: "Semibold", fontSize: 12 }}>Note Description</Text>
-                    <Text style={{ fontSize: 16, fontFamily: "Poppins" }}>{note.description}</Text>
+                    <Text style={{ fontFamily: "Semibold", fontSize: 12,color: isDark ? 'white':'black' }}>Note Description</Text>
+                    <Text style={{ fontSize: 16, fontFamily: "Poppins", color: isDark ? 'white':'black' }}>{note.description}</Text>
                 </View>
                 <View  >
-                    <Text style={{ fontFamily: "Semibold", fontSize: 12 }}>Note Background Color</Text>
+                    <Text style={{ fontFamily: "Semibold", fontSize: 12,color: isDark ? 'white':'black' }}>Note Background Color</Text>
                     <View style={{ ...styles.noteBackground, backgroundColor: note.color }} />
 
                 </View>
@@ -57,12 +56,12 @@ const DetailNote = ({ route, navigation }) => {
 export default DetailNote
 
 const styles = StyleSheet.create({
-    container: {
+    container: isDark=>( {
         flex: 1,
         paddingTop: 60,
-        backgroundColor: "#fff",
+        backgroundColor: isDark ? 'white':'black',
         paddingHorizontal: 20,
-    },
+    }),
     iconContainer: {
         paddingVertical: 6,
         paddingHorizontal: 10,

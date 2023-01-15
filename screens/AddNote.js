@@ -5,6 +5,7 @@ import HeaderBtn from "react-native-vector-icons/Ionicons"
 import Toast from 'react-native-toast-message';
 import { colors } from '../data'
 import { insertNotes } from '../db/db'
+import styles from '../styles'
 const AddNote = ({ navigation }) => {
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [title, setTitle] = useState("")
@@ -46,21 +47,21 @@ const AddNote = ({ navigation }) => {
         }
     }, [error, textValidated])
     return (
-        <View style={styles.container}>
+        <View style={styles.container(isDark)}>
             <View style={{ flexDirection: "row", alignItems: "center", }}>
                 <Pressable onPress={() => navigation.navigate("Home")}>
-                    <View style={styles.iconContainer}>
+                    <View style={styles.iconContainerAdd}>
                         <HeaderBtn name='arrow-back' size={24} color={"#fff"} />
                     </View>
                 </Pressable>
 
-                <Text style={{ textAlign: "center", fontFamily: "Poppins", fontSize: 18, flex: 1 }}>Add A New Note</Text>
+                <Text style={{ textAlign: "center", fontFamily: "Poppins", fontSize: 18, flex: 1, color: isDark ? 'white':'black' }}>Add A New Note</Text>
             </View>
 
 
             <View style={styles.formContainer}>
                 <View style={{ marginBottom: 20 }}>
-                    <View style={{ ...styles.inputContainer, borderWidth: error.title ? 1 : 0 }}>
+                    <View style={{ ...styles.inputContainerAdd, borderWidth: error.title ? 1 : 0 }}>
                         <Icon name='title' size={25} color={"grey"} />
                         <TextInput value={title} onChangeText={(e) => setTitle(e)} multiline={true} onKeyPress={() => setError({ ...error, title: null })} placeholder='Enter Your Note Title' style={styles.input} />
                     </View>
@@ -68,7 +69,7 @@ const AddNote = ({ navigation }) => {
                 </View>
                 <View style={{ marginBottom: 20 }}>
 
-                    <View style={{ ...styles.inputContainer, borderWidth: error.description ? 1 : 0 }}>
+                    <View style={{ ...styles.inputContainerAdd, borderWidth: error.description ? 1 : 0 }}>
                         <Icon name='description' size={25} color={"grey"} />
                         <TextInput value={description} onChangeText={(e) => setDescription(e)} on multiline={true} onKeyPress={() => setError({ ...error, description: null })} placeholder='Enter Your Note Description' style={styles.input} />
                     </View>
@@ -97,59 +98,3 @@ const AddNote = ({ navigation }) => {
 }
 
 export default AddNote
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 60,
-        backgroundColor: "#fff",
-        paddingHorizontal: 20,
-    },
-    formContainer: {
-        width: "100%",
-        marginVertical: 40
-    },
-    inputContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        paddingVertical: 16,
-        paddingHorizontal: 8,
-        borderRadius: 8,
-        elevation: 4,
-        backgroundColor: "#fff",
-        overflow: "hidden",
-        // marginBottom: 20,
-        borderColor: "red"
-    },
-    input: {
-        marginLeft: 4,
-        fontSize: 16,
-        color: "grey",
-        width: "90%",
-    },
-    iconContainer: {
-        paddingVertical: 6,
-        paddingHorizontal: 10,
-        borderRadius: 5,
-        elevation: 4,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#000",
-        overflow: "hidden"
-    },
-
-    btn: {
-        backgroundColor: "#00887e",
-        paddingVertical: 15,
-        alignItems: "center", justifyContent: "center", borderRadius: 8,
-    },
-    colorBox: {
-        height: 50, width: 50, marginHorizontal: 5, borderRadius: 4,
-        overflow: "hidden",
-        borderColor: "grey"
-    }, error: {
-        fontSize: 12,
-        fontFamily: "Poppins",
-        color: "red"
-    }
-})
