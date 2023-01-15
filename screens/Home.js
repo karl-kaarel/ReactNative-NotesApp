@@ -17,7 +17,7 @@ const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                <Text style={{ fontSize: 24, color: "#000", fontFamily: "Semibold" }}>Notes</Text>
+                <Text style={{ fontSize: 25, color: "#000", fontFamily: "Semibold" }}>Notes</Text>
                 <Pressable onPress={() => navigation.navigate("AddNote")}>
                     <View style={styles.iconContainer}>
                         <Icon name='add' size={28} color={"#fff"} />
@@ -25,7 +25,7 @@ const Home = ({ navigation }) => {
                 </Pressable>
             </View>
             <View style={styles.inputContainer}>
-                <Icon name='search-outline' size={25} color={"grey"} />
+                <Icon name='search-outline' size={25} color={"gray"} />
                 <TextInput value={text} onChangeText={(e) => setText(e)} style={styles.input} placeholder='Search Your Notes' />
             </View>
             <FlatList showsVerticalScrollIndicator={false} data={filteredNotes} renderItem={({ item }) => (
