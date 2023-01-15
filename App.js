@@ -2,13 +2,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, useColorScheme } from 'react-native';
 import Home from './screens/Home';
 import Detail from './screens/DetailNote';
 import AddNote from './screens/AddNote';
 import { initializeDatabase } from './db/db';
-
 export default function App() {
+  const isDarkMode = useColorScheme() ==='dark'; 
   const [loaded] = useFonts({
     "Poppins": require("./assets/fonts/regular.ttf"),
     "Semibold": require("./assets/fonts/semibold.ttf")
