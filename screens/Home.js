@@ -16,21 +16,30 @@ const Home = ({ navigation }) => {
     }, [isFocused])
     return (
         <View style={styles.container}>
+
+            {/* Notes title */}
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <Text style={{ fontSize: 25, color: "#000", fontFamily: "Semibold" }}>Notes</Text>
-                <Pressable onPress={() => navigation.navigate("AddNote")}>
-                    <View style={styles.iconContainer}>
-                        <Icon name='add' size={28} color={"#fff"} />
-                    </View>
-                </Pressable>
             </View>
+
+            {/* search box */}
             <View style={styles.inputContainer}>
                 <Icon name='search-outline' size={25} color={"gray"} />
                 <TextInput value={text} onChangeText={(e) => setText(e)} style={styles.input} placeholder='Search Your Notes' />
             </View>
+
+            {/* notes view */}
             <FlatList showsVerticalScrollIndicator={false} data={filteredNotes} renderItem={({ item }) => (
                 <Note note={item} navigation={navigation} />
+                
             )} />
+
+            {/* add new note button */}
+            <Pressable style={styles.iconPosition} onPress={() => navigation.navigate("AddNote")}> 
+                <View style={styles.iconContainer}>
+                    <Icon name='add' size={50} color={"#fff"} />
+                </View>
+            </Pressable>
         </View>
     )
 }
@@ -47,12 +56,26 @@ const styles = StyleSheet.create({
     iconContainer: {
         paddingVertical: 5,
         paddingHorizontal: 8,
-        borderRadius: 7,
-        elevation: 2,
+        borderRadius: 40,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+        elevation: 24,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#000",
-        overflow: "hidden"
+        overflow: "hidden",
+    },
+    iconPosition: {
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 7,
+        bottom: 120
     },
     inputContainer: {
         flexDirection: "row",
