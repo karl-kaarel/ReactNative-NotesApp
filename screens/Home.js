@@ -20,7 +20,6 @@ const Home = ({ navigation }) => {
     }, [isFocused])
     return (
         <View style={styles.container(isDark )}>
-
             {/* Notes title */}
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                 <Text style={{ fontSize: 25, color: isDark ? 'white':'black',fontFamily: "Semibold" }}>Notes</Text>
