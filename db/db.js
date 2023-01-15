@@ -58,6 +58,23 @@ export const fetchNotes = () => {
     });
     return promise;
 };
+export const updateNote = (id, title, description, color) => {
+    const promise = new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                `UPDATE notes SET title=?, description=?, color=? WHERE id=?`,
+                [title, description, color, id],
+                (_, result) => {
+                    resolve(result);
+                },
+                (_, err) => {
+                    reject(err);
+                }
+            );
+        });
+    });
+    return promise;
+};
 export const deleteNote = (id) => {
     const promise = new Promise((resolve, reject) => {
         db.transaction(tx => {

@@ -7,15 +7,15 @@ import { fetchNotes } from '../db/db'
 import App from '../App'
 import { isDarkMode } from '../App'
 import styles from '../styles'
-const Home = ({ navigation }) => {   
+const Home = ({ navigation }) => {  
     
     const [notes, setNotes] = useState([])
     const [text, setText] = useState("")
     const isFocused = useIsFocused();
     const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(text.toLowerCase()) || note.description.toLowerCase().includes(text.toLowerCase()))
     const [isDark, setIsDark] =useState(isDarkMode);
-    global.isDark=isDark;
     useEffect(async () => {
+        // console.log(isDark)
         const { rows } = await fetchNotes()
         setNotes(rows._array)
     }, [isFocused])

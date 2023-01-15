@@ -25,8 +25,6 @@ const AddNote = ({ navigation }) => {
         }
         if (description === "") {
             error.description = "Please  enter description"
-        } else if (description.length < 10) {
-            error.description = "Description sholud be greater then 10 words lettters"
         }
         if (color === "") {
             error.color = "Please  select color"
@@ -49,6 +47,8 @@ const AddNote = ({ navigation }) => {
     return (
         <View style={styles.container(isDark)}>
             <View style={{ flexDirection: "row", alignItems: "center", }}>
+
+                {/* Back button */}
                 <Pressable onPress={() => navigation.navigate("Home")}>
                     <View style={styles.iconContainerAdd}>
                         <HeaderBtn name='arrow-back' size={24} color={"#fff"} />
@@ -61,7 +61,7 @@ const AddNote = ({ navigation }) => {
 
             <View style={styles.formContainer}>
                 <View style={{ marginBottom: 20 }}>
-                    <View style={{ ...styles.inputContainerAdd, borderWidth: error.title ? 1 : 0 }}>
+                    <View style={{ ...styles.inputContainer, borderWidth: error.title ? 1 : 0 }}>
                         <Icon name='title' size={25} color={"grey"} />
                         <TextInput value={title} onChangeText={(e) => setTitle(e)} multiline={true} onKeyPress={() => setError({ ...error, title: null })} placeholder='Enter Your Note Title' style={styles.input} />
                     </View>
@@ -69,7 +69,7 @@ const AddNote = ({ navigation }) => {
                 </View>
                 <View style={{ marginBottom: 20 }}>
 
-                    <View style={{ ...styles.inputContainerAdd, borderWidth: error.description ? 1 : 0 }}>
+                    <View style={{ ...styles.inputContainer, borderWidth: error.description ? 1 : 0 }}>
                         <Icon name='description' size={25} color={"grey"} />
                         <TextInput value={description} onChangeText={(e) => setDescription(e)} on multiline={true} onKeyPress={() => setError({ ...error, description: null })} placeholder='Enter Your Note Description' style={styles.input} />
                     </View>
@@ -78,6 +78,7 @@ const AddNote = ({ navigation }) => {
                 </View>
                 <View style={{ marginVertical: 20 }}>
 
+                    {/* Choose color */}
                     <View style={{ flexDirection: "row", }}>
                         {colors.map((col, index) => (
                             <TouchableOpacity key={index} onPress={() => { setSelectedIndex(index); setColor(col.color) }} >
@@ -86,8 +87,11 @@ const AddNote = ({ navigation }) => {
                         )
                         )}
                     </View>
+
                     {error.color && <Text style={styles.error}>{error.color}</Text>}
                 </View>
+
+                {/* Upload button */}
                 <TouchableOpacity style={styles.btn} onPress={uploadNotes}>
                     <Text style={{ color: "#fff", fontSize: 16 }}>Upload</Text>
                 </TouchableOpacity>
